@@ -1,0 +1,54 @@
+﻿@page
+@model BookListRazor.Pages.BookList.IndexModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10">
+            <h2 class="text-info">Book List</h2>
+        </div>
+        <div class="col-lg-2">
+            <a asp-page="Create" href="#" class="btn btn-info form-control text-white">Create New Book</a>
+        </div>
+    </div>
+    <div>
+        <div class="col mt-3">
+            @if (Model.Books.Count() <= 0)
+            {
+                <p>No books available.</p>
+            }
+            else
+            {
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    @foreach (var book in Model.Books)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => book.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => book.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => book.Author)
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                                <button class="btn btn-sm btn-success text-white">Edit</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>
