@@ -1,20 +1,21 @@
 ﻿@page
-@model BookListRazor.Pages.BookList.CreateModel
+@model BookListRazor.Pages.BookList.EditModel
 @{
 }
 
 <br />
-<h2 class="text-info">Create a Book</h2>
+<h2 class="text-info">Edit Book</h2>
 <br />
 
 <form method="post" class="container">
     <div class="text-danger" asp-validation-summary="ModelOnly"></div>
     <div class="form-group row">
+        <input type="hidden" asp-for="Book.Id" />
         <div class="col-1 my-auto">
             <label asp-for="Book.Name"></label>
         </div>
         <div class="col-6">
-            <input asp-for="Book.Name" class="form-control" placeholder="Insert the book name..." />
+            <input asp-for="Book.Name" class="form-control" />
         </div>
         <span asp-validation-for="Book.Name" class="text-danger my-auto"></span>
     </div>
@@ -23,7 +24,7 @@
             <label asp-for="Book.Author"></label>
         </div>
         <div class="col-6">
-            <input asp-for="Book.Author" class="form-control" placeholder="Insert the author..." />
+            <input asp-for="Book.Author" class="form-control" />
         </div>
         <span asp-validation-for="Book.Author" class="text-danger my-auto"></span>
     </div>
@@ -32,20 +33,16 @@
             <label asp-for="Book.ISBN"></label>
         </div>
         <div class="col-6">
-            <input asp-for="Book.ISBN" class="form-control" placeholder="Insert the ISBN..." />
+            <input asp-for="Book.ISBN" class="form-control" />
         </div>
         <span asp-validation-for="Book.ISBN" class="text-danger my-auto"></span>
     </div>
     <div class="form-group row">
         <div class="col-3 offset-1">
-            <input type="submit" value="Create" class="btn btn-success form-control" />
+            <input type="submit" value="Update" class="btn btn-success form-control" />
         </div>
         <div class="col-3">
             <a asp-page="Index" class="btn btn-secondary form-control">Back to List</a>
         </div>
     </div>
 </form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

@@ -9,7 +9,7 @@
             <h2 class="text-info">Book List</h2>
         </div>
         <div class="col-lg-2">
-            <a asp-page="Create" href="#" class="btn btn-info form-control text-white">Create New Book</a>
+            <a asp-page="Create" class="btn btn-info form-control text-white">Create New Book</a>
         </div>
     </div>
     <div>
@@ -20,34 +20,42 @@
             }
             else
             {
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    @foreach (var book in Model.Books)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(x => book.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => book.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(x => book.Author)
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-danger">Remove</button>
-                                <button class="btn btn-sm btn-success text-white">Edit</button>
-                            </td>
-                        </tr>
-                    }
-                </table>
+                <form method="post">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        @foreach (var book in Model.Books)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => book.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => book.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => book.Author)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => book.ISBN)
+                                </td>
+                                <td>
+                                    <button asp-page-handler="Delete" asp-route-id="@book.Id"
+                                            onclick="return confirm('Are you sure you want to delete?')"
+                                            class="btn btn-sm btn-danger">Remove</button>
+                                    <a asp-page="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-success text-white">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </form>
             }
         </div>
     </div>
